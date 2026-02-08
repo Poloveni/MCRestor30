@@ -85,69 +85,18 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Animation des compteurs (si on veut en ajouter plus tard)
-function animateCounter(element, target, duration) {
-    let start = 0;
-    const increment = target / (duration / 16);
-    
-    const timer = setInterval(() => {
-        start += increment;
-        if (start >= target) {
-            element.textContent = target;
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(start);
-        }
-    }, 16);
-}
-
-// Effet de glow sur les éléments au survol
-document.querySelectorAll('.service-card, .gallery-item').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
-    });
-});
-
-// Chargement progressif des images
-const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const img = entry.target;
-            img.style.opacity = '0';
-            img.style.transition = 'opacity 0.5s';
-            
-            img.addEventListener('load', () => {
-                img.style.opacity = '1';
-            });
-            
-            if (img.dataset.src) {
-                img.src = img.dataset.src;
-            }
-            
-            observer.unobserve(img);
-        }
-    });
-});
-
-document.querySelectorAll('.gallery-item img').forEach(img => {
-    imageObserver.observe(img);
-});
-
 // Animation du logo au scroll
 let lastScroll = 0;
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     const logo = document.querySelector('.logo');
     
-    if (currentScroll > lastScroll && currentScroll > 100) {
-        logo.style.transform = 'scale(0.9)';
-    } else {
-        logo.style.transform = 'scale(1)';
+    if (logo) {
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            logo.style.transform = 'scale(0.9)';
+        } else {
+            logo.style.transform = 'scale(1)';
+        }
     }
     
     lastScroll = currentScroll;
