@@ -31,6 +31,126 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Form submission
 document.getElementById('contactForm').addEventListener('submit', (e) => {
     e.preventDefault();
-    alert('Merci pour votre demande ! Nous vous recontacterons rapidement.');
-    e.target.reset();
+    
+    // Animation du bouton
+    const btn = e.target.querySelector('button');
+    const originalText = btn.textContent;
+    btn.textContent = '✓ Message envoyé !';
+    btn.style.background = 'linear-gradient(135deg, #00ff88 0%, #00cc66 100%)';
+    
+    setTimeout(() => {
+        alert('Merci pour votre demande ! Nous vous recontacterons rapidement.');
+        e.target.reset();
+        btn.textContent = originalText;
+        btn.style.background = '';
+    }, 1500);
 });
+
+// Scroll Reveal Animation
+const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+}, observerOptions);
+
+// Observer tous les éléments à animer
+document.querySelectorAll('.service-card, .advantage-item, .gallery-item').forEach(el => {
+    el.classList.add('scroll-reveal');
+    observer.observe(el);
+});
+
+// Parallax effect sur le hero
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
+    }
+});
+
+// Header transparent qui devient opaque au scroll
+const header = document.querySelector('header');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+        header.style.background = 'rgba(10, 14, 39, 0.98)';
+    } else {
+        header.style.background = 'rgba(10, 14, 39, 0.95)';
+    }
+});
+
+// Animation des compteurs (si on veut en ajouter plus tard)
+function animateCounter(element, target, duration) {
+    let start = 0;
+    const increment = target / (duration / 16);
+    
+    const timer = setInterval(() => {
+        start += increment;
+        if (start >= target) {
+            element.textContent = target;
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(start);
+        }
+    }, 16);
+}
+
+// Effet de glow sur les éléments au survol
+document.querySelectorAll('.service-card, .gallery-item').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+    });
+});
+
+// Chargement progressif des images
+const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.5s';
+            
+            img.addEventListener('load', () => {
+                img.style.opacity = '1';
+            });
+            
+            if (img.dataset.src) {
+                img.src = img.dataset.src;
+            }
+            
+            observer.unobserve(img);
+        }
+    });
+});
+
+document.querySelectorAll('.gallery-item img').forEach(img => {
+    imageObserver.observe(img);
+});
+
+// Animation du logo au scroll
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    const logo = document.querySelector('.logo');
+    
+    if (currentScroll > lastScroll && currentScroll > 100) {
+        logo.style.transform = 'scale(0.9)';
+    } else {
+        logo.style.transform = 'scale(1)';
+    }
+    
+    lastScroll = currentScroll;
+});
+
+console.log('🔥 MCRestor30 - Site chargé avec succès !');
