@@ -7,26 +7,27 @@
     <meta name="description" content="Spécialiste pièces auto & moto : Aérogommage, Sablage, Peinture thermolaquage. Grand choix de couleurs et personnalisation.">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header class="header">
         <nav class="navbar">
             <div class="container">
                 <div class="logo">
                     <img src="images/logo-mcrestor.jpg" alt="M.C RESTOR" class="logo-img">
-                    <h1>MCRestor30</h1>
+                    <span class="logo-text">MCRestor<span class="highlight">30</span></span>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#galerie">Réalisations</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#accueil" class="nav-link">Accueil</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#galerie" class="nav-link">Réalisations</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
                 <div class="burger">
-                    <div class="line1"></div>
-                    <div class="line2"></div>
-                    <div class="line3"></div>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
         </nav>
@@ -34,61 +35,126 @@
 
     <!-- Hero Section -->
     <section id="accueil" class="hero">
-        <div class="hero-overlay">
-            <div class="hero-content">
-                <h2>Spécialiste Pièces Auto & Moto</h2>
-                <p class="tagline">Aérogommage • Sablage • Thermolaquage</p>
-                <p class="subtitle">Personnalisez vos pièces avec un grand choix de couleurs</p>
-                <a href="#contact" class="btn-primary">Demander un devis</a>
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-text">
+                    <span class="hero-subtitle" data-aos="fade-up">L'excellence dans la finition</span>
+                    <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                        Spécialiste<br>
+                        <span class="gradient-text">Thermolaquage</span><br>
+                        & Aérogommage
+                    </h1>
+                    <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
+                        Donnez une seconde vie à vos pièces auto & moto avec nos services de décapage et peinture professionnels
+                    </p>
+                    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
+                        <a href="#contact" class="btn btn-primary">
+                            <span>Demander un devis</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#services" class="btn btn-secondary">
+                            <span>Nos services</span>
+                        </a>
+                    </div>
+                    <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
+                        <div class="stat">
+                            <span class="stat-number">200+</span>
+                            <span class="stat-label">Couleurs RAL</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Ans d'expérience</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Satisfaction</span>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>Scroll</span>
         </div>
     </section>
 
     <!-- Services -->
     <section id="services" class="services">
         <div class="container">
-            <h2 class="section-title">Nos Services</h2>
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-subtitle">Ce que nous faisons</span>
+                <h2 class="section-title">Nos <span class="gradient-text">Services</span></h2>
+                <p class="section-description">Des solutions complètes pour la restauration et la personnalisation de vos pièces</p>
+            </div>
+
             <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-wind"></i>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card-inner">
+                        <div class="service-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <h3 class="service-title">Aérogommage</h3>
+                        <p class="service-description">
+                            Décapage doux et précis de vos pièces sans déformation. Idéal pour les pièces délicates et les surfaces sensibles.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Jantes aluminium</li>
+                            <li><i class="fas fa-check"></i> Pièces moteur</li>
+                            <li><i class="fas fa-check"></i> Châssis</li>
+                            <li><i class="fas fa-check"></i> Carrosserie</li>
+                        </ul>
+                        <div class="service-number">01</div>
                     </div>
-                    <h3>Aérogommage</h3>
-                    <p>Décapage doux et précis de vos pièces sans déformation. Idéal pour les pièces délicates et les surfaces sensibles.</p>
-                    <ul class="service-list">
-                        <li>Jantes aluminium</li>
-                        <li>Pièces moteur</li>
-                        <li>Châssis</li>
-                        <li>Carrosserie</li>
-                    </ul>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-hammer"></i>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card-inner">
+                        <div class="service-icon">
+                            <i class="fas fa-hammer"></i>
+                        </div>
+                        <h3 class="service-title">Sablage</h3>
+                        <p class="service-description">
+                            Décapage efficace pour éliminer rouille, peinture et corrosion. Préparation optimale avant peinture.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Cadres moto</li>
+                            <li><i class="fas fa-check"></i> Jantes acier</li>
+                            <li><i class="fas fa-check"></i> Pièces métalliques</li>
+                            <li><i class="fas fa-check"></i> Restauration</li>
+                        </ul>
+                        <div class="service-number">02</div>
                     </div>
-                    <h3>Sablage</h3>
-                    <p>Décapage efficace pour éliminer rouille, peinture et corrosion. Préparation optimale avant peinture.</p>
-                    <ul class="service-list">
-                        <li>Cadres moto</li>
-                        <li>Jantes acier</li>
-                        <li>Pièces métalliques</li>
-                        <li>Restauration</li>
-                    </ul>
                 </div>
 
-                <div class="service-card highlight">
-                    <div class="service-icon">
-                        <i class="fas fa-spray-can"></i>
+                <div class="service-card featured" data-aos="fade-up" data-aos-delay="300">
+                    <div class="featured-badge">
+                        <i class="fas fa-star"></i>
+                        <span>Populaire</span>
                     </div>
-                    <h3>Thermolaquage</h3>
-                    <p>Peinture poudre haute résistance avec une finition exceptionnelle. Durabilité maximale et rendu professionnel.</p>
-                    <ul class="service-list">
-                        <li>+ de 200 couleurs RAL</li>
-                        <li>Finitions mate, brillante, satinée</li>
-                        <li>Effets spéciaux disponibles</li>
-                        <li>Personnalisation totale</li>
-                    </ul>
+                    <div class="service-card-inner">
+                        <div class="service-icon">
+                            <i class="fas fa-spray-can"></i>
+                        </div>
+                        <h3 class="service-title">Thermolaquage</h3>
+                        <p class="service-description">
+                            Peinture poudre haute résistance avec une finition exceptionnelle. Durabilité maximale et rendu professionnel.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> + de 200 couleurs RAL</li>
+                            <li><i class="fas fa-check"></i> Finitions mate, brillante, satinée</li>
+                            <li><i class="fas fa-check"></i> Effets spéciaux disponibles</li>
+                            <li><i class="fas fa-check"></i> Personnalisation totale</li>
+                        </ul>
+                        <div class="service-number">03</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -97,27 +163,34 @@
     <!-- Avantages -->
     <section class="advantages">
         <div class="container">
-            <h2 class="section-title">Pourquoi Nous Choisir ?</h2>
             <div class="advantages-grid">
-                <div class="advantage-item">
-                    <i class="fas fa-medal"></i>
+                <div class="advantage-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="advantage-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
                     <h4>Expertise</h4>
-                    <p>Spécialistes auto & moto</p>
+                    <p>Spécialistes auto & moto depuis plus de 15 ans</p>
                 </div>
-                <div class="advantage-item">
-                    <i class="fas fa-palette"></i>
+                <div class="advantage-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="advantage-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
                     <h4>200+ Couleurs</h4>
-                    <p>Large choix RAL</p>
+                    <p>Large choix dans le nuancier RAL</p>
                 </div>
-                <div class="advantage-item">
-                    <i class="fas fa-shield-alt"></i>
+                <div class="advantage-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="advantage-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
                     <h4>Résistance</h4>
-                    <p>Finition ultra-durable</p>
+                    <p>Finition ultra-durable et résistante</p>
                 </div>
-                <div class="advantage-item">
-                    <i class="fas fa-tools"></i>
+                <div class="advantage-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="advantage-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
                     <h4>Personnalisation</h4>
-                    <p>Selon vos envies</p>
+                    <p>Création sur mesure selon vos envies</p>
                 </div>
             </div>
         </div>
@@ -126,55 +199,98 @@
     <!-- Galerie -->
     <section id="galerie" class="gallery">
         <div class="container">
-            <h2 class="section-title">Nos Réalisations</h2>
-            <p class="section-subtitle">Découvrez quelques-unes de nos créations</p>
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-subtitle">Portfolio</span>
+                <h2 class="section-title">Nos <span class="gradient-text">Réalisations</span></h2>
+                <p class="section-description">Découvrez quelques exemples de notre savoir-faire</p>
+            </div>
+
             <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="images/cadre-honda-rouge.webp" alt="Cadre Honda 600 XLR thermolaqué rouge">
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                    <img src="images/cadre-honda-rouge.webp" alt="Cadre Honda 600 XLR thermolaqué rouge" loading="lazy">
                     <div class="gallery-overlay">
-                        <p>Cadre Honda 600 XLR 1987 remis à neuf</p>
+                        <div class="gallery-content">
+                            <h4>Cadre Honda 600 XLR</h4>
+                            <p>Restauration complète - Thermolaquage rouge</p>
+                            <button class="btn-view"><i class="fas fa-search-plus"></i></button>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="images/cache-culbuteur-avant-apres.jpg" alt="Restauration cache culbuteur Honda">
+
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="150">
+                    <img src="images/cache-culbuteur-avant-apres.jpg" alt="Restauration cache culbuteur Honda" loading="lazy">
                     <div class="gallery-overlay">
-                        <p>Cache culbuteur Honda 250 XLR - Avant/Après</p>
+                        <div class="gallery-content">
+                            <h4>Cache culbuteur Honda</h4>
+                            <p>Avant/Après restauration</p>
+                            <button class="btn-view"><i class="fas fa-search-plus"></i></button>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="images/jante-violette.jpg" alt="Jante supermotard personnalisée">
+
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                    <img src="images/jante-violette.jpg" alt="Jante supermotard personnalisée" loading="lazy">
                     <div class="gallery-overlay">
-                        <p>Jante supermotard dirtbike - Finition violette</p>
+                        <div class="gallery-content">
+                            <h4>Jante Supermotard</h4>
+                            <p>Finition violette métallisée</p>
+                            <button class="btn-view"><i class="fas fa-search-plus"></i></button>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="images/jantes-ssv-biton.webp" alt="Jantes SSV bi-ton">
+
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="250">
+                    <img src="images/jantes-ssv-biton.webp" alt="Jantes SSV bi-ton" loading="lazy">
                     <div class="gallery-overlay">
-                        <p>Jantes SSV/Buggy - Peinture bi-ton</p>
+                        <div class="gallery-content">
+                            <h4>Jantes SSV/Buggy</h4>
+                            <p>Peinture bi-ton personnalisée</p>
+                            <button class="btn-view"><i class="fas fa-search-plus"></i></button>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="images/cadre-kxf-vert.webp" alt="Cadre 450 KXF thermolaqué">
+
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
+                    <img src="images/cadre-kxf-vert.webp" alt="Cadre 450 KXF thermolaqué" loading="lazy">
                     <div class="gallery-overlay">
-                        <p>Cadre 450 KXF - Finition verte</p>
+                        <div class="gallery-content">
+                            <h4>Cadre 450 KXF</h4>
+                            <p>Finition verte brillante</p>
+                            <button class="btn-view"><i class="fas fa-search-plus"></i></button>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="images/cache-culbuteur-rouge.jpg" alt="Cache culbuteur rouge profond">
+
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="350">
+                    <img src="images/cache-culbuteur-rouge.jpg" alt="Cache culbuteur rouge profond" loading="lazy">
                     <div class="gallery-overlay">
-                        <p>Cache culbuteur - Rouge profond métallisé</p>
+                        <div class="gallery-content">
+                            <h4>Cache culbuteur</h4>
+                            <p>Rouge profond métallisé</p>
+                            <button class="btn-view"><i class="fas fa-search-plus"></i></button>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="images/montant-porte-audi.jpg" alt="Montant de porte Audi A3">
+
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
+                    <img src="images/montant-porte-audi.jpg" alt="Montant de porte Audi A3" loading="lazy">
                     <div class="gallery-overlay">
-                        <p>Montant de porte Audi A3 restauré</p>
+                        <div class="gallery-content">
+                            <h4>Montant de porte Audi</h4>
+                            <p>Restauration complète</p>
+                            <button class="btn-view"><i class="fas fa-search-plus"></i></button>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="images/jantes-ssv-biton-2.webp" alt="Jantes SSV détail">
+
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="450">
+                    <img src="images/jantes-ssv-biton-2.webp" alt="Jantes SSV détail" loading="lazy">
                     <div class="gallery-overlay">
-                        <p>Détail jantes SSV - Finition bi-ton</p>
+                        <div class="gallery-content">
+                            <h4>Jantes SSV</h4>
+                            <p>Détail finition bi-ton</p>
+                            <button class="btn-view"><i class="fas fa-search-plus"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -184,52 +300,108 @@
     <!-- Contact -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Contactez-Nous</h2>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>MCRestor30</h3>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <p>Gard (30)<br>France</p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <p><a href="tel:+33767573254">07 67 57 32 54</a></p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <p><a href="mailto:contact@mcrestor30.fr">contact@mcrestor30.fr</a></p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <p style="margin-bottom: 0.5rem;"><strong>Horaires d'ouverture</strong></p>
-                            <p style="font-size: 0.9rem; line-height: 1.8;">
-                                Lun - Sam : 08:00 - 18:00<br>
-                                Dimanche : Fermé
-                            </p>
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-subtitle">Prenons contact</span>
+                <h2 class="section-title">Discutons de votre <span class="gradient-text">Projet</span></h2>
+            </div>
+
+            <div class="contact-wrapper">
+                <div class="contact-info" data-aos="fade-right">
+                    <div class="contact-card">
+                        <h3>MCRestor30</h3>
+                        <p class="contact-intro">Contactez-nous pour obtenir un devis gratuit et personnalisé</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Adresse</h4>
+                                    <p>Gard (30), France</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Téléphone</h4>
+                                    <p><a href="tel:+33767573254">07 67 57 32 54</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Email</h4>
+                                    <p><a href="mailto:contact@mcrestor30.fr">contact@mcrestor30.fr</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Horaires</h4>
+                                    <p>Lun - Sam : 08:00 - 18:00<br>Dimanche : Fermé</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/profile.php?id=61575616468527&locale=fr_FR" target="_blank" rel="noopener"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/mcrestor30/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/profile.php?id=61575616468527&locale=fr_FR" target="_blank" rel="noopener" aria-label="Facebook">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="https://www.instagram.com/mcrestor30/" target="_blank" rel="noopener" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <input type="text" placeholder="Nom" required>
-                        <input type="email" placeholder="Email" required>
-                        <input type="tel" placeholder="Téléphone">
-                        <select>
-                            <option value="">Service souhaité</option>
-                            <option value="aerogommage">Aérogommage</option>
-                            <option value="sablage">Sablage</option>
-                            <option value="thermolaquage">Thermolaquage</option>
-                            <option value="complet">Prestation complète</option>
-                        </select>
-                        <textarea placeholder="Décrivez votre projet..." rows="5" required></textarea>
-                        <button type="submit" class="btn-primary">Envoyer la demande</button>
+                <div class="contact-form-wrapper" data-aos="fade-left">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" name="name" placeholder="Votre nom" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Téléphone</label>
+                                <input type="tel" id="phone" name="phone" placeholder="06 00 00 00 00">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">Service souhaité</label>
+                            <select id="service" name="service" required>
+                                <option value="">Sélectionnez un service</option>
+                                <option value="aerogommage">Aérogommage</option>
+                                <option value="sablage">Sablage</option>
+                                <option value="thermolaquage">Thermolaquage</option>
+                                <option value="complet">Prestation complète</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Décrivez votre projet</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Parlez-nous de votre projet..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-submit">
+                            <span>Envoyer la demande</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -237,12 +409,34 @@
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 MCRestor30 - Spécialiste Thermolaquage & Aérogommage | Tous droits réservés</p>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo-mcrestor.jpg" alt="M.C RESTOR" class="logo-img">
+                    <span class="logo-text">MCRestor<span class="highlight">30</span></span>
+                </div>
+                <p class="footer-text">
+                    &copy; 2024 MCRestor30 - Spécialiste Thermolaquage & Aérogommage
+                    <br>Tous droits réservés
+                </p>
+            </div>
         </div>
     </footer>
 
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close">&times;</button>
+        <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+        <div class="lightbox-content">
+            <img src="" alt="">
+            <div class="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- AOS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
