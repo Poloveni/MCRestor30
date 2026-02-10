@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    
+    <!-- Page d'accueil -->
+    <url>
+        <loc>https://www.mcrestor30.fr/</loc>
+        <lastmod>2024-02-10</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Section Processus -->
+    <url>
+        <loc>https://www.mcrestor30.fr/#processus</loc>
+        <lastmod>2024-02-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Section Services -->
+    <url>
+        <loc>https://www.mcrestor30.fr/#services</loc>
+        <lastmod>2024-02-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- Section Galerie/Réalisations -->
+    <url>
+        <loc>https://www.mcrestor30.fr/#galerie</loc>
+        <lastmod>2024-02-10</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://www.mcrestor30.fr/images/cadre-honda-rouge.webp</image:loc>
+            <image:caption>Thermolaquage cadre Honda 600 XLR rouge</image:caption>
+            <image:title>Cadre Honda 600 XLR restauré</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.mcrestor30.fr/images/jante-violette.jpg</image:loc>
+            <image:caption>Jante supermotard thermolaquée violet</image:caption>
+            <image:title>Jante personnalisée violette</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.mcrestor30.fr/images/cadre-kxf-vert.webp</image:loc>
+            <image:caption>Cadre 450 KXF thermolaqué vert</image:caption>
+            <image:title>Cadre KXF restauration complète</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.mcrestor30.fr/images/jantes-ssv-biton.webp</image:loc>
+            <image:caption>Jantes SSV peinture bi-ton</image:caption>
+            <image:title>Jantes SSV personnalisées</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.mcrestor30.fr/images/cache-culbuteur-avant-apres.jpg</image:loc>
+            <image:caption>Cache culbuteur Honda avant/après</image:caption>
+            <image:title>Restauration cache culbuteur</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.mcrestor30.fr/images/cache-culbuteur-rouge.jpg</image:loc>
+            <image:caption>Cache culbuteur rouge métallisé</image:caption>
+            <image:title>Cache culbuteur thermolaqué</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.mcrestor30.fr/images/montant-porte-audi.jpg</image:loc>
+            <image:caption>Montant de porte Audi A3 restauré</image:caption>
+            <image:title>Restauration pièce automobile</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.mcrestor30.fr/images/jantes-ssv-biton-2.webp</image:loc>
+            <image:caption>Détail jantes SSV bi-ton</image:caption>
+            <image:title>Finition jantes professionnelle</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Section Témoignages -->
+    <url>
+        <loc>https://www.mcrestor30.fr/#temoignages</loc>
+        <lastmod>2024-02-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <!-- Section Contact -->
+    <url>
+        <loc>https://www.mcrestor30.fr/#contact</loc>
+        <lastmod>2024-02-10</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+</urlset>

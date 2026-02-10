@@ -1,0 +1,40 @@
+# robots.txt pour MCRestor30
+# https://www.mcrestor30.fr/robots.txt
+
+User-agent: *
+Allow: /
+Allow: /images/
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap
+Sitemap: https://www.mcrestor30.fr/sitemap.xml
+
+# Crawl-delay (optionnel - évite de surcharger le serveur)
+Crawl-delay: 1
+
+# Règles spécifiques pour les bots de recherche principaux
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /images/
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Bloquer les mauvais bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
