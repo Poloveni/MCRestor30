@@ -1,8 +1,20 @@
 // ===================================
+// PRELOADER
+// ===================================
+window.addEventListener('load', () => {
+    const preloader = document.querySelector('.preloader');
+    setTimeout(() => {
+        preloader.classList.add('hidden');
+        setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 500);
+    }, 1500);
+});
+
+// ===================================
 // AOS INITIALIZATION
 // ===================================
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize AOS
     AOS.init({
         duration: 800,
         easing: 'ease-out-cubic',
@@ -11,6 +23,123 @@ document.addEventListener('DOMContentLoaded', function() {
         disable: false
     });
 });
+
+// ===================================
+// PARTICLES.JS
+// ===================================
+if (typeof particlesJS !== 'undefined') {
+    particlesJS('particles-js', {
+        particles: {
+            number: {
+                value: 80,
+                density: {
+                    enable: true,
+                    value_area: 800
+                }
+            },
+            color: {
+                value: '#ff6b35'
+            },
+            shape: {
+                type: 'circle',
+            },
+            opacity: {
+                value: 0.3,
+                random: true,
+                anim: {
+                    enable: true,
+                    speed: 1,
+                    opacity_min: 0.1,
+                    sync: false
+                }
+            },
+            size: {
+                value: 3,
+                random: true,
+                anim: {
+                    enable: true,
+                    speed: 2,
+                    size_min: 0.1,
+                    sync: false
+                }
+            },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: '#ff8c42',
+                opacity: 0.2,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 2,
+                direction: 'none',
+                random: false,
+                straight: false,
+                out_mode: 'out',
+                bounce: false,
+            }
+        },
+        interactivity: {
+            detect_on: 'canvas',
+            events: {
+                onhover: {
+                    enable: true,
+                    mode: 'grab'
+                },
+                resize: true
+            },
+            modes: {
+                grab: {
+                    distance: 140,
+                    line_linked: {
+                        opacity: 0.5
+                    }
+                }
+            }
+        },
+        retina_detect: true
+    });
+}
+
+// ===================================
+// TYPING EFFECT
+// ===================================
+const typingElement = document.querySelector('.typing-effect');
+if (typingElement) {
+    const words = ['Thermolaquage', 'Restauration', 'Personnalisation'];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 150;
+
+    function type() {
+        const currentWord = words[wordIndex];
+        
+        if (isDeleting) {
+            typingElement.textContent = currentWord.substring(0, charIndex - 1);
+            charIndex--;
+            typingSpeed = 100;
+        } else {
+            typingElement.textContent = currentWord.substring(0, charIndex + 1);
+            charIndex++;
+            typingSpeed = 150;
+        }
+
+        if (!isDeleting && charIndex === currentWord.length) {
+            isDeleting = true;
+            typingSpeed = 2000; // Pause at end
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            typingSpeed = 500; // Pause before next word
+        }
+
+        setTimeout(type, typingSpeed);
+    }
+
+    setTimeout(type, 1000);
+}
 
 // ===================================
 // HEADER SCROLL EFFECT
@@ -51,7 +180,6 @@ navItems.forEach(item => {
     });
 });
 
-// Close menu when clicking outside
 document.addEventListener('click', (e) => {
     if (!burger.contains(e.target) && !navLinks.contains(e.target)) {
         burger.classList.remove('active');
@@ -81,6 +209,69 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ===================================
+// BEFORE/AFTER SLIDER
+// ===================================
+const comparisonSlider = document.querySelector('.comparison-slider-handle');
+const beforeImage = document.querySelector('.comparison-image.before');
+const afterImage = document.querySelector('.comparison-image.after');
+
+if (comparisonSlider) {
+    let isDragging = false;
+
+    function updateSlider(e) {
+        if (!isDragging) return;
+        
+        const container = comparisonSlider.closest('.comparison-container');
+        const rect = container.getBoundingClientRect();
+        const x = (e.clientX || e.touches[0].clientX) - rect.left;
+        const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+        
+        comparisonSlider.style.left = percentage + '%';
+        afterImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+    }
+
+    comparisonSlider.addEventListener('mousedown', () => isDragging = true);
+    comparisonSlider.addEventListener('touchstart', () => isDragging = true);
+    
+    document.addEventListener('mousemove', updateSlider);
+    document.addEventListener('touchmove', updateSlider);
+    
+    document.addEventListener('mouseup', () => isDragging = false);
+    document.addEventListener('touchend', () => isDragging = false);
+}
+
+// ===================================
+// GALLERY FILTERS
+// ===================================
+const filterButtons = document.querySelectorAll('.filter-btn');
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+        
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        galleryItems.forEach(item => {
+            if (filter === 'all' || item.dataset.category === filter) {
+                item.classList.remove('hide');
+                setTimeout(() => {
+                    item.style.display = 'block';
+                }, 10);
+            } else {
+                item.classList.add('hide');
+                setTimeout(() => {
+                    if (item.classList.contains('hide')) {
+                        item.style.display = 'none';
+                    }
+                }, 300);
+            }
+        });
+    });
+});
+
+// ===================================
 // LIGHTBOX GALLERY
 // ===================================
 const lightbox = document.getElementById('lightbox');
@@ -89,12 +280,10 @@ const lightboxCaption = lightbox.querySelector('.lightbox-caption');
 const closeBtn = lightbox.querySelector('.lightbox-close');
 const prevBtn = lightbox.querySelector('.lightbox-prev');
 const nextBtn = lightbox.querySelector('.lightbox-next');
-const galleryItems = document.querySelectorAll('.gallery-item');
 
 let currentImageIndex = 0;
 const images = [];
 
-// Collect all gallery images
 galleryItems.forEach((item, index) => {
     const img = item.querySelector('img');
     const caption = item.querySelector('.gallery-content h4').textContent + ' - ' + 
@@ -106,7 +295,6 @@ galleryItems.forEach((item, index) => {
         caption: caption
     });
     
-    // Add click event to gallery items
     item.addEventListener('click', () => {
         openLightbox(index);
     });
@@ -141,19 +329,16 @@ function prevImage() {
     updateLightboxImage();
 }
 
-// Lightbox controls
 closeBtn.addEventListener('click', closeLightbox);
 nextBtn.addEventListener('click', nextImage);
 prevBtn.addEventListener('click', prevImage);
 
-// Close lightbox when clicking outside the image
 lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) {
         closeLightbox();
     }
 });
 
-// Keyboard navigation
 document.addEventListener('keydown', (e) => {
     if (!lightbox.classList.contains('active')) return;
     
@@ -167,6 +352,69 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ===================================
+// TESTIMONIALS CAROUSEL
+// ===================================
+const testimonialTrack = document.querySelector('.testimonial-track');
+const testimonialCards = document.querySelectorAll('.testimonial-card');
+const testimonialPrev = document.querySelector('.testimonial-prev');
+const testimonialNext = document.querySelector('.testimonial-next');
+const dotsContainer = document.querySelector('.testimonials-dots');
+
+if (testimonialTrack && testimonialCards.length > 0) {
+    let currentTestimonial = 0;
+    const totalTestimonials = testimonialCards.length;
+
+    // Create dots
+    for (let i = 0; i < totalTestimonials; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToTestimonial(i));
+        dotsContainer.appendChild(dot);
+    }
+
+    const dots = document.querySelectorAll('.dot');
+
+    function updateTestimonials() {
+        testimonialTrack.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentTestimonial);
+        });
+    }
+
+    function nextTestimonial() {
+        currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+        updateTestimonials();
+    }
+
+    function prevTestimonial() {
+        currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
+        updateTestimonials();
+    }
+
+    function goToTestimonial(index) {
+        currentTestimonial = index;
+        updateTestimonials();
+    }
+
+    testimonialNext.addEventListener('click', nextTestimonial);
+    testimonialPrev.addEventListener('click', prevTestimonial);
+
+    // Auto-play
+    let autoplayInterval = setInterval(nextTestimonial, 5000);
+
+    // Pause on hover
+    const testimonialSlider = document.querySelector('.testimonials-slider');
+    testimonialSlider.addEventListener('mouseenter', () => {
+        clearInterval(autoplayInterval);
+    });
+
+    testimonialSlider.addEventListener('mouseleave', () => {
+        autoplayInterval = setInterval(nextTestimonial, 5000);
+    });
+}
+
+// ===================================
 // CONTACT FORM
 // ===================================
 const contactForm = document.getElementById('contactForm');
@@ -174,34 +422,25 @@ const contactForm = document.getElementById('contactForm');
 contactForm.addEventListener('submit', function(e) {
     e.preventDefault();
     
-    // Get form data
     const formData = new FormData(contactForm);
     const data = {};
     formData.forEach((value, key) => {
         data[key] = value;
     });
     
-    // Show success message (customize based on your needs)
     showNotification('Merci ! Votre demande a été envoyée avec succès. Nous vous recontacterons rapidement.', 'success');
-    
-    // Reset form
     contactForm.reset();
-    
-    // Here you would typically send the data to your server
-    // Example: sendToServer(data);
 });
 
 // ===================================
 // NOTIFICATION SYSTEM
 // ===================================
 function showNotification(message, type = 'info') {
-    // Remove existing notification if any
     const existingNotification = document.querySelector('.notification');
     if (existingNotification) {
         existingNotification.remove();
     }
     
-    // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
@@ -212,7 +451,6 @@ function showNotification(message, type = 'info') {
         <button class="notification-close">&times;</button>
     `;
     
-    // Add styles
     const style = document.createElement('style');
     style.textContent = `
         .notification {
@@ -307,16 +545,13 @@ function showNotification(message, type = 'info') {
         document.head.appendChild(style);
     }
     
-    // Add to page
     document.body.appendChild(notification);
     
-    // Close button
     notification.querySelector('.notification-close').addEventListener('click', () => {
         notification.style.animation = 'slideOut 0.3s ease';
         setTimeout(() => notification.remove(), 300);
     });
     
-    // Auto remove after 5 seconds
     setTimeout(() => {
         if (notification.parentElement) {
             notification.style.animation = 'slideOut 0.3s ease';
@@ -332,31 +567,27 @@ function animateCounter(element, target, duration = 2000) {
     const start = 0;
     const increment = target / (duration / 16);
     let current = start;
+    const suffix = element.textContent.replace(/[0-9]/g, '');
     
     const timer = setInterval(() => {
         current += increment;
         if (current >= target) {
-            element.textContent = target + (element.textContent.includes('+') ? '+' : '') + 
-                                 (element.textContent.includes('%') ? '%' : '');
+            element.textContent = target + suffix;
             clearInterval(timer);
         } else {
-            element.textContent = Math.floor(current) + (element.textContent.includes('+') ? '+' : '') + 
-                                 (element.textContent.includes('%') ? '%' : '');
+            element.textContent = Math.floor(current) + suffix;
         }
     }, 16);
 }
 
-// Trigger counter animation when stats section is visible
+// Trigger counter animation
 const statsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const statNumbers = entry.target.querySelectorAll('.stat-number');
             statNumbers.forEach(stat => {
-                const text = stat.textContent;
-                const number = parseInt(text.replace(/\D/g, ''));
-                stat.textContent = '0' + (text.includes('+') ? '+' : '') + 
-                                  (text.includes('%') ? '%' : '');
-                animateCounter(stat, number);
+                const target = parseInt(stat.dataset.count);
+                animateCounter(stat, target);
             });
             statsObserver.unobserve(entry.target);
         }
@@ -367,6 +598,31 @@ const heroStats = document.querySelector('.hero-stats');
 if (heroStats) {
     statsObserver.observe(heroStats);
 }
+
+// ===================================
+// TILT EFFECT ON SERVICE CARDS
+// ===================================
+const tiltCards = document.querySelectorAll('.tilt');
+
+tiltCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+    });
+});
 
 // ===================================
 // PARALLAX EFFECT
@@ -400,24 +656,11 @@ document.querySelectorAll('.gallery-item img').forEach(img => {
 });
 
 // ===================================
-// PRELOAD CRITICAL IMAGES
-// ===================================
-window.addEventListener('load', () => {
-    // Fade in page content
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = '1';
-    }, 100);
-});
-
-// ===================================
 // FORM VALIDATION ENHANCEMENT
 // ===================================
 const formInputs = document.querySelectorAll('.contact-form input, .contact-form select, .contact-form textarea');
 
 formInputs.forEach(input => {
-    // Add floating label effect
     input.addEventListener('focus', () => {
         input.parentElement.classList.add('focused');
     });
@@ -428,7 +671,6 @@ formInputs.forEach(input => {
         }
     });
     
-    // Real-time validation
     input.addEventListener('input', () => {
         if (input.validity.valid) {
             input.style.borderColor = '#28a745';
@@ -441,9 +683,51 @@ formInputs.forEach(input => {
 });
 
 // ===================================
+// RIPPLE EFFECT ON BUTTONS
+// ===================================
+document.querySelectorAll('.ripple').forEach(button => {
+    button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple-effect');
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 600);
+    });
+});
+
+// Add ripple effect styles
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    .ripple-effect {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.6);
+        transform: scale(0);
+        animation: ripple-animation 0.6s ease-out;
+        pointer-events: none;
+    }
+    
+    @keyframes ripple-animation {
+        to {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(rippleStyle);
+
+// ===================================
 // PERFORMANCE OPTIMIZATION
 // ===================================
-// Debounce function for scroll events
 function debounce(func, wait = 10) {
     let timeout;
     return function executedFunction(...args) {
@@ -456,11 +740,18 @@ function debounce(func, wait = 10) {
     };
 }
 
-// Apply debounce to scroll events
 const debouncedScroll = debounce(() => {
-    // Any scroll-dependent functions here
+    // Scroll-dependent functions
 }, 10);
 
 window.addEventListener('scroll', debouncedScroll);
 
-console.log('MCRestor30 - Site chargé avec succès! 🚀');
+console.log('🚀 MCRestor30 V2.0 - Site chargé avec succès!');
+console.log('✨ Nouvelles fonctionnalités activées:');
+console.log('   - Particules animées');
+console.log('   - Effet de typing');
+console.log('   - Slider avant/après');
+console.log('   - Filtres de galerie');
+console.log('   - Carousel témoignages');
+console.log('   - Effet tilt 3D');
+console.log('   - Preloader stylé');

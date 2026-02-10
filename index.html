@@ -10,6 +10,17 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 </head>
 <body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="loader-ring"></div>
+            <div class="loader-logo">
+                <i class="fas fa-spray-can"></i>
+            </div>
+            <p class="loader-text">Chargement...</p>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <nav class="navbar">
@@ -20,8 +31,10 @@
                 </div>
                 <ul class="nav-links">
                     <li><a href="#accueil" class="nav-link">Accueil</a></li>
+                    <li><a href="#processus" class="nav-link">Processus</a></li>
                     <li><a href="#services" class="nav-link">Services</a></li>
                     <li><a href="#galerie" class="nav-link">Réalisations</a></li>
+                    <li><a href="#temoignages" class="nav-link">Témoignages</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
                 <div class="burger">
@@ -35,6 +48,7 @@
 
     <!-- Hero Section -->
     <section id="accueil" class="hero">
+        <div id="particles-js"></div>
         <div class="hero-shapes">
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
@@ -46,33 +60,37 @@
                     <span class="hero-subtitle" data-aos="fade-up">L'excellence dans la finition</span>
                     <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
                         Spécialiste<br>
-                        <span class="gradient-text">Thermolaquage</span><br>
+                        <span class="gradient-text typing-effect"></span><br>
                         & Aérogommage
                     </h1>
                     <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
                         Donnez une seconde vie à vos pièces auto & moto avec nos services de décapage et peinture professionnels
                     </p>
                     <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
-                        <a href="#contact" class="btn btn-primary">
-                            <span>Demander un devis</span>
+                        <a href="#contact" class="btn btn-primary ripple">
+                            <span>Demander un devis gratuit</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
-                        <a href="#services" class="btn btn-secondary">
-                            <span>Nos services</span>
+                        <a href="#services" class="btn btn-secondary ripple">
+                            <span>Découvrir nos services</span>
                         </a>
                     </div>
                     <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
                         <div class="stat">
-                            <span class="stat-number">200+</span>
+                            <span class="stat-number" data-count="200">0+</span>
                             <span class="stat-label">Couleurs RAL</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">15+</span>
-                            <span class="stat-label">Ans d'expérience</span>
+                            <span class="stat-number" data-count="500">0+</span>
+                            <span class="stat-label">Pièces traitées</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">100%</span>
+                            <span class="stat-number" data-count="100">0%</span>
                             <span class="stat-label">Satisfaction</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-count="15">0+</span>
+                            <span class="stat-label">Ans d'expérience</span>
                         </div>
                     </div>
                 </div>
@@ -86,6 +104,93 @@
         </div>
     </section>
 
+    <!-- Processus Timeline -->
+    <section id="processus" class="processus">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-subtitle">Notre expertise</span>
+                <h2 class="section-title">Le Processus <span class="gradient-text">Complet</span></h2>
+                <p class="section-description">De la préparation à la finition, découvrez notre méthode professionnelle</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
+                    <div class="timeline-number">01</div>
+                    <div class="timeline-content">
+                        <div class="timeline-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Diagnostic</h3>
+                        <p>Analyse complète de vos pièces et identification des traitements nécessaires</p>
+                    </div>
+                    <div class="timeline-connector"></div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
+                    <div class="timeline-number">02</div>
+                    <div class="timeline-content">
+                        <div class="timeline-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <h3>Décapage</h3>
+                        <p>Aérogommage ou sablage selon le type de pièce pour un résultat optimal</p>
+                    </div>
+                    <div class="timeline-connector"></div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
+                    <div class="timeline-number">03</div>
+                    <div class="timeline-content">
+                        <div class="timeline-icon">
+                            <i class="fas fa-spray-can"></i>
+                        </div>
+                        <h3>Thermolaquage</h3>
+                        <p>Application de la peinture poudre avec cuisson au four pour une finition parfaite</p>
+                    </div>
+                    <div class="timeline-connector"></div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-left" data-aos-delay="400">
+                    <div class="timeline-number">04</div>
+                    <div class="timeline-content">
+                        <div class="timeline-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3>Contrôle Qualité</h3>
+                        <p>Vérification minutieuse et finitions pour un rendu impeccable</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before/After Section -->
+    <section class="before-after">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-subtitle">La transformation</span>
+                <h2 class="section-title">Avant / <span class="gradient-text">Après</span></h2>
+                <p class="section-description">Découvrez la métamorphose de vos pièces</p>
+            </div>
+
+            <div class="comparison-slider" data-aos="zoom-in">
+                <div class="comparison-container">
+                    <img src="images/cache-culbuteur-avant-apres.jpg" alt="Avant restauration" class="comparison-image before">
+                    <img src="images/cache-culbuteur-avant-apres.jpg" alt="Après restauration" class="comparison-image after">
+                    <div class="comparison-slider-handle">
+                        <div class="slider-button">
+                            <i class="fas fa-arrows-alt-h"></i>
+                        </div>
+                    </div>
+                    <div class="comparison-labels">
+                        <span class="label-before">AVANT</span>
+                        <span class="label-after">APRÈS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services -->
     <section id="services" class="services">
         <div class="container">
@@ -96,7 +201,7 @@
             </div>
 
             <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-card tilt" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-card-inner">
                         <div class="service-icon">
                             <i class="fas fa-wind"></i>
@@ -115,7 +220,7 @@
                     </div>
                 </div>
 
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-card tilt" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-card-inner">
                         <div class="service-icon">
                             <i class="fas fa-hammer"></i>
@@ -134,7 +239,7 @@
                     </div>
                 </div>
 
-                <div class="service-card featured" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-card featured tilt" data-aos="fade-up" data-aos-delay="300">
                     <div class="featured-badge">
                         <i class="fas fa-star"></i>
                         <span>Populaire</span>
@@ -196,7 +301,7 @@
         </div>
     </section>
 
-    <!-- Galerie -->
+    <!-- Galerie avec filtres -->
     <section id="galerie" class="gallery">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
@@ -205,8 +310,23 @@
                 <p class="section-description">Découvrez quelques exemples de notre savoir-faire</p>
             </div>
 
+            <div class="gallery-filters" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-th"></i> Tout voir
+                </button>
+                <button class="filter-btn" data-filter="jantes">
+                    <i class="fas fa-circle-notch"></i> Jantes
+                </button>
+                <button class="filter-btn" data-filter="cadres">
+                    <i class="fas fa-bicycle"></i> Cadres
+                </button>
+                <button class="filter-btn" data-filter="pieces">
+                    <i class="fas fa-cog"></i> Pièces moteur
+                </button>
+            </div>
+
             <div class="gallery-grid">
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="gallery-item" data-category="cadres" data-aos="fade-up" data-aos-delay="100">
                     <img src="images/cadre-honda-rouge.webp" alt="Cadre Honda 600 XLR thermolaqué rouge" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-content">
@@ -217,7 +337,7 @@
                     </div>
                 </div>
 
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="150">
+                <div class="gallery-item" data-category="pieces" data-aos="fade-up" data-aos-delay="150">
                     <img src="images/cache-culbuteur-avant-apres.jpg" alt="Restauration cache culbuteur Honda" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-content">
@@ -228,7 +348,7 @@
                     </div>
                 </div>
 
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="gallery-item" data-category="jantes" data-aos="fade-up" data-aos-delay="200">
                     <img src="images/jante-violette.jpg" alt="Jante supermotard personnalisée" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-content">
@@ -239,7 +359,7 @@
                     </div>
                 </div>
 
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="250">
+                <div class="gallery-item" data-category="jantes" data-aos="fade-up" data-aos-delay="250">
                     <img src="images/jantes-ssv-biton.webp" alt="Jantes SSV bi-ton" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-content">
@@ -250,7 +370,7 @@
                     </div>
                 </div>
 
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="gallery-item" data-category="cadres" data-aos="fade-up" data-aos-delay="300">
                     <img src="images/cadre-kxf-vert.webp" alt="Cadre 450 KXF thermolaqué" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-content">
@@ -261,7 +381,7 @@
                     </div>
                 </div>
 
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="350">
+                <div class="gallery-item" data-category="pieces" data-aos="fade-up" data-aos-delay="350">
                     <img src="images/cache-culbuteur-rouge.jpg" alt="Cache culbuteur rouge profond" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-content">
@@ -272,7 +392,7 @@
                     </div>
                 </div>
 
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
+                <div class="gallery-item" data-category="pieces" data-aos="fade-up" data-aos-delay="400">
                     <img src="images/montant-porte-audi.jpg" alt="Montant de porte Audi A3" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-content">
@@ -283,7 +403,7 @@
                     </div>
                 </div>
 
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="450">
+                <div class="gallery-item" data-category="jantes" data-aos="fade-up" data-aos-delay="450">
                     <img src="images/jantes-ssv-biton-2.webp" alt="Jantes SSV détail" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-content">
@@ -292,6 +412,92 @@
                             <button class="btn-view"><i class="fas fa-search-plus"></i></button>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section id="temoignages" class="testimonials">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-subtitle">Avis clients</span>
+                <h2 class="section-title">Ils nous font <span class="gradient-text">Confiance</span></h2>
+                <p class="section-description">Découvrez ce que nos clients pensent de nos services</p>
+            </div>
+
+            <div class="testimonials-slider" data-aos="fade-up">
+                <div class="testimonial-track">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Travail exceptionnel sur mon cadre de moto ! La finition est parfaite et les couleurs éclatantes. Je recommande vivement !"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Marc D.</h4>
+                                <span>Propriétaire Honda XLR</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Service rapide et professionnel. Mes jantes ont retrouvé une seconde jeunesse ! Le rendu dépasse mes attentes."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Sophie L.</h4>
+                                <span>Passionnée automobile</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Un vrai professionnel ! Conseil personnalisé, devis détaillé et résultat impeccable. Je reviendrai sans hésiter."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Thomas R.</h4>
+                                <span>Pilote dirt bike</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonials-controls">
+                    <button class="testimonial-prev"><i class="fas fa-chevron-left"></i></button>
+                    <div class="testimonials-dots"></div>
+                    <button class="testimonial-next"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
@@ -354,10 +560,10 @@
                         </div>
 
                         <div class="social-links">
-                            <a href="https://www.facebook.com/profile.php?id=61575616468527&locale=fr_FR" target="_blank" rel="noopener" aria-label="Facebook">
+                            <a href="https://www.facebook.com/profile.php?id=61575616468527&locale=fr_FR" target="_blank" rel="noopener" aria-label="Facebook" class="ripple">
                                 <i class="fab fa-facebook"></i>
                             </a>
-                            <a href="https://www.instagram.com/mcrestor30/" target="_blank" rel="noopener" aria-label="Instagram">
+                            <a href="https://www.instagram.com/mcrestor30/" target="_blank" rel="noopener" aria-label="Instagram" class="ripple">
                                 <i class="fab fa-instagram"></i>
                             </a>
                         </div>
@@ -398,7 +604,7 @@
                             <textarea id="message" name="message" rows="5" placeholder="Parlez-nous de votre projet..." required></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-submit">
+                        <button type="submit" class="btn btn-primary btn-submit ripple">
                             <span>Envoyer la demande</span>
                             <i class="fas fa-paper-plane"></i>
                         </button>
@@ -435,7 +641,8 @@
         </div>
     </div>
 
-    <!-- AOS Library -->
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
