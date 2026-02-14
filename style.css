@@ -45,6 +45,31 @@
     --gray-light: #2a2a3e;
 }
 
+[data-theme="dark"] body {
+    background: #0f0f1e;
+    color: #f5f5f5;
+}
+
+[data-theme="dark"] .header.scrolled {
+    background: rgba(15, 15, 30, 0.95);
+}
+
+[data-theme="dark"] .service-card:not(.featured) {
+    background: rgba(42, 42, 62, 0.7);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .timeline-content {
+    background: rgba(42, 42, 62, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .testimonial-card,
+[data-theme="dark"] .contact-form {
+    background: rgba(42, 42, 62, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -336,19 +361,24 @@ ul {
     transition: var(--transition-smooth);
 }
 
+.theme-toggle .fa-moon {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
 .theme-toggle .fa-sun {
     opacity: 0;
-    transform: translate(-50%, -50%) rotate(180deg);
+    transform: translate(-50%, -50%) rotate(180deg) scale(0);
 }
 
 [data-theme="dark"] .theme-toggle .fa-moon {
     opacity: 0;
-    transform: translate(-50%, -50%) rotate(-180deg);
+    transform: translate(-50%, -50%) rotate(-180deg) scale(0);
 }
 
 [data-theme="dark"] .theme-toggle .fa-sun {
     opacity: 1;
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
 }
 
 .burger span {

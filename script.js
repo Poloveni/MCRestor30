@@ -765,21 +765,23 @@ console.log('   - Effets parallax');
 const themeToggle = document.getElementById('themeToggle');
 const htmlElement = document.documentElement;
 
-const currentTheme = localStorage.getItem('theme') || 'light';
-htmlElement.setAttribute('data-theme', currentTheme);
+if (themeToggle) {
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    htmlElement.setAttribute('data-theme', currentTheme);
 
-themeToggle.addEventListener('click', () => {
-    const currentTheme = htmlElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
-    htmlElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    
-    themeToggle.style.transform = 'scale(0.8) rotate(360deg)';
-    setTimeout(() => {
-        themeToggle.style.transform = '';
-    }, 300);
-});
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        htmlElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        themeToggle.style.transform = 'scale(0.8) rotate(360deg)';
+        setTimeout(() => {
+            themeToggle.style.transform = '';
+        }, 300);
+    });
+}
 
 // ===================================
 // PARALLAX SCROLLING EFFECT
