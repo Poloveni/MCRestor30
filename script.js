@@ -1,14 +1,23 @@
 // ===================================
+// THEME TOGGLE (DARK MODE) - EARLY INIT
+// ===================================
+const htmlElement = document.documentElement;
+const savedTheme = localStorage.getItem('theme') || 'light';
+htmlElement.setAttribute('data-theme', savedTheme);
+
+// ===================================
 // PRELOADER
 // ===================================
 window.addEventListener('load', () => {
     const preloader = document.querySelector('.preloader');
-    setTimeout(() => {
-        preloader.classList.add('hidden');
+    if (preloader) {
         setTimeout(() => {
-            preloader.style.display = 'none';
-        }, 500);
-    }, 1500);
+            preloader.classList.add('hidden');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        }, 1500);
+    }
 });
 
 // ===================================
@@ -762,26 +771,24 @@ console.log('   - Effets parallax');
 // ===================================
 // THEME TOGGLE (DARK MODE)
 // ===================================
-const themeToggle = document.getElementById('themeToggle');
-const htmlElement = document.documentElement;
-
-if (themeToggle) {
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    htmlElement.setAttribute('data-theme', currentTheme);
-
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = htmlElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        
-        htmlElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        
-        themeToggle.style.transform = 'scale(0.8) rotate(360deg)';
-        setTimeout(() => {
-            themeToggle.style.transform = '';
-        }, 300);
-    });
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('themeToggle');
+    
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            themeToggle.style.transform = 'scale(0.8) rotate(360deg)';
+            setTimeout(() => {
+                themeToggle.style.transform = '';
+            }, 300);
+        });
+    }
+});
 
 // ===================================
 // PARALLAX SCROLLING EFFECT
@@ -801,67 +808,77 @@ window.addEventListener('scroll', () => {
 // ===================================
 // LAZY LOADING IMAGES
 // ===================================
-const images = document.querySelectorAll('img[loading="lazy"]');
+document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('img[loading="lazy"]');
 
-const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const img = entry.target;
-            img.classList.add('loading');
-            
-            const tempImg = new Image();
-            tempImg.src = img.src;
-            
-            tempImg.onload = () => {
-                img.classList.remove('loading');
-                img.classList.add('loaded');
-            };
-            
-            observer.unobserve(img);
-        }
-    });
-}, {
-    rootMargin: '50px'
+    if (images.length > 0) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.classList.add('loading');
+                    
+                    const tempImg = new Image();
+                    tempImg.src = img.src;
+                    
+                    tempImg.onload = () => {
+                        img.classList.remove('loading');
+                        img.classList.add('loaded');
+                    };
+                    
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px'
+        });
+
+        images.forEach(img => imageObserver.observe(img));
+    }
 });
-
-images.forEach(img => imageObserver.observe(img));
 
 // ===================================
 // ENHANCED 3D TILT EFFECT
 // ===================================
-document.querySelectorAll('.service-card, .advantage-card, .gallery-item').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-    });
+document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.service-card, .advantage-card, .gallery-item');
     
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
     });
 });
 
 // ===================================
 // SMOOTH SCROLL WITH OFFSET
 // ===================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const offsetTop = target.offsetTop - 80;
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
-        }
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const offsetTop = target.offsetTop - 80;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
     });
 });
