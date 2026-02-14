@@ -755,3 +755,111 @@ console.log('   - Filtres de galerie');
 console.log('   - Carousel témoignages');
 console.log('   - Effet tilt 3D');
 console.log('   - Preloader stylé');
+console.log('   - Dark mode toggle');
+console.log('   - Glassmorphism effects');
+console.log('   - Effets parallax');
+
+// ===================================
+// THEME TOGGLE (DARK MODE)
+// ===================================
+const themeToggle = document.getElementById('themeToggle');
+const htmlElement = document.documentElement;
+
+const currentTheme = localStorage.getItem('theme') || 'light';
+htmlElement.setAttribute('data-theme', currentTheme);
+
+themeToggle.addEventListener('click', () => {
+    const currentTheme = htmlElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    htmlElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    
+    themeToggle.style.transform = 'scale(0.8) rotate(360deg)';
+    setTimeout(() => {
+        themeToggle.style.transform = '';
+    }, 300);
+});
+
+// ===================================
+// PARALLAX SCROLLING EFFECT
+// ===================================
+const parallaxElements = document.querySelectorAll('.hero-shapes .shape');
+
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    
+    parallaxElements.forEach((element, index) => {
+        const speed = (index + 1) * 0.5;
+        const yPos = -(scrolled * speed) / 10;
+        element.style.transform = `translateY(${yPos}px) rotate(${scrolled * 0.05}deg)`;
+    });
+});
+
+// ===================================
+// LAZY LOADING IMAGES
+// ===================================
+const images = document.querySelectorAll('img[loading="lazy"]');
+
+const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            img.classList.add('loading');
+            
+            const tempImg = new Image();
+            tempImg.src = img.src;
+            
+            tempImg.onload = () => {
+                img.classList.remove('loading');
+                img.classList.add('loaded');
+            };
+            
+            observer.unobserve(img);
+        }
+    });
+}, {
+    rootMargin: '50px'
+});
+
+images.forEach(img => imageObserver.observe(img));
+
+// ===================================
+// ENHANCED 3D TILT EFFECT
+// ===================================
+document.querySelectorAll('.service-card, .advantage-card, .gallery-item').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+    });
+});
+
+// ===================================
+// SMOOTH SCROLL WITH OFFSET
+// ===================================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            const offsetTop = target.offsetTop - 80;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
