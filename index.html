@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCRestor30 – Spécialiste Thermolaquage & Aérogommage | Gard (30)</title>
+    <meta name="description" content="Spécialiste pièces auto & moto : Aérogommage, Sablage, Peinture thermolaquage. Grand choix de couleurs et personnalisation. Devis gratuit.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --bg-card-hover: #1c1c1c;
+            --accent: #e91e7b;
+            --accent-light: #ff4da6;
+            --accent-dark: #b8155f;
+            --gold: #d4a843;
+            --text-primary: #f0f0f0;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --border: #222222;
+            --gradient-accent: linear-gradient(135deg, #e91e7b, #ff6b35);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: white;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-dark); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(233, 30, 123, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.6rem 2rem;
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(233, 30, 123, 0.3);
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-logo span {
+            -webkit-text-fill-color: var(--text-primary);
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-light);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 0.6rem 1.5rem;
+            background: var(--gradient-accent);
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: white !important;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(233, 30, 123, 0.4);
+        }
+
+        .nav-cta::after { display: none !important; }
+
+        /* Mobile menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 70% 30%, rgba(233, 30, 123, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 30% 70%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
+                var(--bg-primary);
+        }
+
+        .hero-particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 8s infinite;
+        }
+
+        @keyframes particleFloat {
+            0% { opacity: 0; transform: translateY(100vh) scale(0); }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border: 1px solid rgba(233, 30, 123, 0.4);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease 0.2s both;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 7rem);
+            line-height: 0.95;
+            letter-spacing: 4px;
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-title .accent {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 1.5rem auto 2.5rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            border-radius: 4px;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--gradient-accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(233, 30, 123, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent-light);
+            transform: translateY(-3px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease 1s both;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            animation: scrollPulse 2s ease infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
+
+        /* ===== SECTION COMMON ===== */
+        .section {
+            padding: 6rem 2rem;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            letter-spacing: 4px;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* ===== SERVICES ===== */
+        .services {
+            background: var(--bg-secondary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: default;
+        }
+
+        .service-card:hover {
+            border-color: rgba(233, 30, 123, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-card-img {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .service-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .service-card:hover .service-card-img img {
+            transform: scale(1.08);
+        }
+
+        .service-card-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--bg-card) 0%, transparent 60%);
+        }
+
+        .service-card-body {
+            padding: 1.5rem;
+        }
+
+        .service-card-body h3 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card-body p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .service-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(233, 30, 123, 0.15);
+            color: var(--accent-light);
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            transition: all 0.4s;
+        }
+
+        .gallery-item:hover {
+            border-color: rgba(233, 30, 123, 0.4);
+            transform: scale(1.02);
+            z-index: 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .gallery-placeholder svg {
+            width: 48px;
+            height: 48px;
+            stroke: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-note {
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== ABOUT ===== */
+        .about {
+            background: var(--bg-secondary);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image-box {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            aspect-ratio: 4/3;
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-image-box .placeholder-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 80px;
+            height: 80px;
+            border-top: 3px solid var(--accent);
+            border-left: 3px solid var(--accent);
+            border-radius: 4px 0 0 0;
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            right: -15px;
+            width: 80px;
+            height: 80px;
+            border-bottom: 3px solid var(--accent);
+            border-right: 3px solid var(--accent);
+            border-radius: 0 0 4px 0;
+        }
+
+        .about-text h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .about-text h3 .accent {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ===== INFO BANNER ===== */
+        .info-banner {
+            background: linear-gradient(135deg, rgba(233, 30, 123, 0.1), rgba(255, 107, 53, 0.05));
+            border: 1px solid rgba(233, 30, 123, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-banner h4 {
+            color: var(--accent-light);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-banner p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            border-color: rgba(233, 30, 123, 0.3);
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: 50%;
+            background: rgba(233, 30, 123, 0.15);
+            color: var(--accent-light);
+        }
+
+        .contact-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .contact-item h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .contact-item a {
+            color: var(--accent-light);
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent);
+        }
+
+        .contact-form-wrap {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .contact-form-wrap h3 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-accent);
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(233, 30, 123, 0.4);
+        }
+
+        /* ===== MAP ===== */
+        .map-container {
+            margin-top: 3rem;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            height: 350px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(0.8) brightness(0.7) contrast(1.1);
+            transition: filter 0.4s;
+        }
+
+        .map-container:hover iframe {
+            filter: grayscale(0.3) brightness(0.85) contrast(1);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand .nav-logo {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-col a {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent-light);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .footer-socials a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            transition: all 0.3s;
+        }
+
+        .footer-socials a:hover {
+            border-color: var(--accent);
+            color: var(--accent-light);
+            transform: translateY(-3px);
+        }
+
+        .footer-socials svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .footer-bottom a {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--accent-light);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            background: transparent;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .lightbox-close:hover {
+            border-color: var(--accent);
+            color: var(--accent-light);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 350px;
+                height: 100vh;
+                flex-direction: column;
+                background: var(--bg-secondary);
+                padding: 5rem 2rem 2rem;
+                gap: 1.5rem;
+                transition: right 0.4s ease;
+                border-left: 1px solid var(--border);
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+            }
+
+            .hero-title {
+                letter-spacing: 2px;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-logo">MCRESTOR<span>30</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#accueil" class="active">Accueil</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#apropos">À Propos</a></li>
+            <li><a href="#contact" class="nav-cta">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="accueil">
+        <div class="hero-bg"></div>
+        <div class="hero-particles" id="particles"></div>
+        <div class="hero-content">
+            <div class="hero-badge">Gard (30) — Restauration & Personnalisation</div>
+            <h1 class="hero-title">
+                <span class="accent">BIENVENUE CHEZ</span><br>
+                MCRESTOR30
+            </h1>
+            <p class="hero-subtitle">
+                Spécialiste du thermolaquage, de l'aérogommage et du sablage dans le Gard. 
+                Restauration pièces auto & moto. Devis gratuit.
+            </p>
+            <div class="hero-cta-group">
+                <a href="#services" class="btn btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                    Découvrir nos services
+                </a>
+                <a href="#contact" class="btn btn-outline">Demander un devis</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="section services" id="services">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <h2 class="section-title">NOS SERVICES</h2>
+                <p class="section-subtitle">Donnez vie à vos idées avec notre expertise</p>
+            </div>
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-card-img">
+                        <div class="gallery-placeholder">
+                            <div>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                <p>Photo Aérogommage</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card-body">
+                        <div class="service-icon">🔧</div>
+                        <h3>AÉROGOMMAGE</h3>
+                        <p>Nettoyage haute précision par projection de micro-abrasifs à basse pression. Idéal pour les pièces délicates, jantes alu, carters moteur. Respecte les surfaces tout en éliminant peinture, rouille et oxydation.</p>
+                    </div>
+                </div>
+                <!-- Service 2 -->
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-card-img">
+                        <div class="gallery-placeholder">
+                            <div>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                <p>Photo Sablage</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card-body">
+                        <div class="service-icon">⚡</div>
+                        <h3>SABLAGE</h3>
+                        <p>Préparation idéale pour une accroche parfaite. Le sablage crée une surface propre et uniforme. Garantit un rendu durable, professionnel et une adhérence optimale pour la peinture ou le thermolaquage.</p>
+                    </div>
+                </div>
+                <!-- Service 3 -->
+                <div class="service-card reveal reveal-delay-3">
+                    <div class="service-card-img">
+                        <div class="gallery-placeholder">
+                            <div>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                <p>Photo Thermolaquage</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card-body">
+                        <div class="service-icon">🎨</div>
+                        <h3>THERMOLAQUAGE</h3>
+                        <p>Application de poudre époxy par procédé électrostatique, puis cuisson au four entre 180°C et 200°C. Finition ultra-résistante aux chocs, rayures, chaleur et intempéries. Grand choix de couleurs et effets.</p>
+                    </div>
+                </div>
+                <!-- Service 4 -->
+                <div class="service-card reveal reveal-delay-4">
+                    <div class="service-card-img">
+                        <div class="gallery-placeholder">
+                            <div>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                <p>Photo Peinture</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card-body">
+                        <div class="service-icon">✨</div>
+                        <h3>PEINTURE & PERSONNALISATION</h3>
+                        <p>Peinture sur mesure pour vos pièces auto, moto et industrielles. Couleurs unies, métallisées, candy, effets spéciaux. Personnalisation complète selon vos envies pour un résultat unique.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALERIE ===== -->
+    <section class="section" id="galerie">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <h2 class="section-title">GALERIE</h2>
+                <p class="section-subtitle">Inspirez-vous de nos réalisations</p>
+            </div>
+            <div class="gallery-grid reveal">
+                <!-- Placeholder images - remplacer par vos vraies photos -->
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <div class="gallery-placeholder"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><p>Votre photo 1</p></div></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <div class="gallery-placeholder"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><p>Votre photo 2</p></div></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <div class="gallery-placeholder"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><p>Votre photo 3</p></div></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <div class="gallery-placeholder"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><p>Votre photo 4</p></div></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <div class="gallery-placeholder"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><p>Votre photo 5</p></div></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <div class="gallery-placeholder"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><p>Votre photo 6</p></div></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <div class="gallery-placeholder"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><p>Votre photo 7</p></div></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <div class="gallery-placeholder"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><p>Votre photo 8</p></div></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <div class="gallery-placeholder"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><p>Votre photo 9</p></div></div>
+                </div>
+            </div>
+            <p class="gallery-note reveal">📸 Remplacez les placeholders par vos photos de réalisations</p>
+        </div>
+    </section>
+
+    <!-- ===== À PROPOS ===== -->
+    <section class="section about" id="apropos">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <h2 class="section-title">À PROPOS</h2>
+                <p class="section-subtitle">Notre passion, votre vision</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image reveal">
+                    <div class="about-image-box">
+                        <div class="placeholder-text">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            <br><br>Votre logo ou photo d'atelier ici
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text reveal reveal-delay-2">
+                    <h3>MCRestor30 — <span class="accent">La restauration comme vous ne l'avez jamais vue.</span></h3>
+                    <p>
+                        Chez MCRestor30, nous donnons vie à vos projets en transformant vos pièces auto et moto en œuvres uniques. 
+                        Passionnés par la couleur et la précision, nous maîtrisons les techniques les plus avancées pour offrir 
+                        un résultat <strong>durable, précis</strong> et <strong>éclatant</strong>.
+                    </p>
+                    <p>
+                        Avec un large choix de couleurs et de finitions, nous offrons une infinité de possibilités pour 
+                        personnaliser vos pièces selon vos envies — des teintes les plus sobres aux effets les plus audacieux.
+                    </p>
+                    <div class="info-banner">
+                        <h4>⚠️ Informations importantes avant l'envoi des pièces</h4>
+                        <p>Toutes les pièces doivent être entièrement démontées avant envoi (aucune vis, joint, roulement, piston, durite, etc.).</p>
+                        <p>Toute pièce non démontée entraînera des frais supplémentaires ou pourra être refusée.</p>
+                        <p style="color: var(--accent-light); margin-top: 0.5rem;"><strong>⚠️ Les frais de retour sont à la charge du client.</strong></p>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Pièces restaurées</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Sur mesure</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">Gard</div>
+                            <div class="stat-label">30 - France</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section" id="contact">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <h2 class="section-title">CONTACT</h2>
+                <p class="section-subtitle">✨ Travaillons ensemble sur votre projet !</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Téléphone</h4>
+                            <p><a href="tel:+33637127688">06 37 12 76 88</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:contact@mcrestor30.fr">contact@mcrestor30.fr</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div>
+                            <h4>Localisation</h4>
+                            <p>Nîmes et environs — Gard (30)</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1012.63 8 4 4 0 0016 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </div>
+                        <div>
+                            <h4>Instagram</h4>
+                            <p><a href="https://instagram.com/mcrestor30" target="_blank" rel="noopener">@mcrestor30</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-wrap reveal reveal-delay-2">
+                    <h3>DEMANDER UN DEVIS</h3>
+                    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                        <input type="hidden" name="subject" value="Nouvelle demande de devis — MCRestor30">
+                        <input type="hidden" name="redirect" value="">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Nom</label>
+                                <input type="text" id="name" name="name" required placeholder="Votre nom">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Téléphone</label>
+                                <input type="tel" id="phone" name="phone" placeholder="06 XX XX XX XX">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service souhaité</label>
+                            <select id="service" name="service">
+                                <option value="">— Choisir un service —</option>
+                                <option value="aerogommage">Aérogommage</option>
+                                <option value="sablage">Sablage</option>
+                                <option value="thermolaquage">Thermolaquage</option>
+                                <option value="peinture">Peinture & Personnalisation</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Décrivez votre projet</label>
+                            <textarea id="message" name="message" required placeholder="Type de pièce, couleur souhaitée, quantité..."></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Envoyer la demande</button>
+                    </form>
+                </div>
+            </div>
+            <!-- Map -->
+            <div class="map-container reveal">
+                <iframe 
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=4.2500%2C43.7800%2C4.4500%2C43.8800&layer=mapnik&marker=43.8367%2C4.3601"
+                    allowfullscreen
+                    loading="lazy"
+                    title="Localisation MCRestor30 — Nîmes, Gard">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="nav-logo">MCRESTOR<span>30</span></a>
+                <p>Votre spécialiste en restauration et personnalisation de pièces auto & moto dans le Gard. Transformez vos objets en œuvres uniques avec notre expertise artisanale.</p>
+                <div class="footer-socials">
+                    <a href="https://instagram.com/mcrestor30" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1012.63 8 4 4 0 0016 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://facebook.com/mcrestor30" target="_blank" rel="noopener" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                    </a>
+                    <a href="https://tiktok.com/@mcrestor30" target="_blank" rel="noopener" aria-label="TikTok">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V9.05a8.24 8.24 0 004.76 1.5V7.11a4.85 4.85 0 01-1-.42z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#galerie">Galerie</a></li>
+                    <li><a href="#apropos">À Propos</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Aérogommage</a></li>
+                    <li><a href="#services">Sablage</a></li>
+                    <li><a href="#services">Thermolaquage</a></li>
+                    <li><a href="#services">Peinture</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:+33637127688">06 37 12 76 88</a></li>
+                    <li><a href="mailto:contact@mcrestor30.fr">contact@mcrestor30.fr</a></li>
+                    <li>Nîmes — Gard (30)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 MCRestor30 — Tous droits réservés</p>
+            <div class="footer-legal">
+                <a href="#">Mentions légales</a>
+                <a href="#">Politique de confidentialité</a>
+                <a href="#">CGV</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <img id="lightboxImg" src="" alt="Photo agrandie">
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ===== Particles =====
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            particle.style.animationDuration = (6 + Math.random() * 6) + 's';
+            particle.style.width = (1 + Math.random() * 3) + 'px';
+            particle.style.height = particle.style.width;
+            particlesContainer.appendChild(particle);
+        }
+
+        // ===== Navbar scroll =====
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // ===== Mobile menu =====
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('open');
+            document.getElementById('hamburger').classList.toggle('active');
+        }
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('open');
+                document.getElementById('hamburger').classList.remove('active');
+            });
+        });
+
+        // ===== Active nav link on scroll =====
+        const sections = document.querySelectorAll('section[id]');
+        const navLinksAll = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinksAll.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // ===== Scroll reveal =====
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ===== Lightbox =====
+        function openLightbox(el) {
+            const img = el.querySelector('img');
+            if (img) {
+                document.getElementById('lightboxImg').src = img.src;
+                document.getElementById('lightbox').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // ===== Form submission feedback =====
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', function(e) {
+            const btn = form.querySelector('.form-submit');
+            btn.textContent = 'Envoi en cours...';
+            btn.style.opacity = '0.7';
+        });
+    </script>
+
+</body>
+</html>
