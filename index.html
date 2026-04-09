@@ -384,6 +384,9 @@
             background: url('img/hero-bg.jpg') center center / cover no-repeat;
             opacity: 0.12;
             animation: heroZoom 20s ease-in-out infinite alternate;
+            will-change: transform;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
 
         .hero-bg::after {
@@ -393,10 +396,11 @@
             background: linear-gradient(to bottom, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.3) 40%, rgba(10,10,10,0.8) 100%);
         }
 
+        /* Une seule définition de heroZoom — sans changement d'opacity pour éviter le scintillement mobile */
         @keyframes heroZoom {
             0% { transform: scale(1) translateX(0); }
-            50% { transform: scale(1.1) translateX(-2%); }
-            100% { transform: scale(1.05) translateX(1%); }
+            50% { transform: scale(1.08) translateX(-1%); }
+            100% { transform: scale(1.04) translateX(0.5%); }
         }
 
         .hero-bg-image {
@@ -405,12 +409,9 @@
             background: url('img/hero-bg.jpg') center center / cover no-repeat;
             opacity: 0.15;
             animation: heroZoom 20s ease-in-out infinite alternate;
-        }
-
-        @keyframes heroZoom {
-            0% { transform: scale(1); opacity: 0.15; }
-            50% { transform: scale(1.08); opacity: 0.2; }
-            100% { transform: scale(1.15); opacity: 0.12; }
+            will-change: transform;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
 
         .hero-overlay {
