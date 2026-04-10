@@ -1696,10 +1696,33 @@
 
         /* Désactivation des animations lourdes sur mobile pour éviter le scintillement */
         @media (max-width: 768px) {
+            /* Fond hero figé */
             .hero-bg::before,
             .hero-bg-image {
                 animation: none;
                 transform: scale(1.05);
+            }
+
+            /* Suppression de l'animation shimmer sur le titre (principale cause du scintillement) */
+            .hero-title .accent {
+                animation: none;
+                background-position: 0 center;
+            }
+
+            /* Suppression de l'effet blur de la navbar (cause de flashs noirs sur iOS Safari) */
+            .navbar {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                background: rgba(10, 10, 10, 0.97);
+            }
+
+            /* Simplification des animations de badge et scroll */
+            .hero-badge {
+                animation: fadeInDown 1s ease 0.2s both;
+            }
+
+            .hero-scroll {
+                animation: fadeInUp 1s ease 1s both;
             }
         }
     </style>
