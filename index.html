@@ -232,8 +232,11 @@
             justify-content: space-between;
             background: rgba(10, 10, 10, 0.85);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(14, 154, 154, 0.1);
             transition: all 0.4s ease;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
 
         .navbar.scrolled {
@@ -366,6 +369,8 @@
             justify-content: center;
             text-align: center;
             overflow: hidden;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
 
         .hero-bg {
@@ -1686,6 +1691,15 @@
 
             .section {
                 padding: 4rem 1rem;
+            }
+        }
+
+        /* Désactivation des animations lourdes sur mobile pour éviter le scintillement */
+        @media (max-width: 768px) {
+            .hero-bg::before,
+            .hero-bg-image {
+                animation: none;
+                transform: scale(1.05);
             }
         }
     </style>
