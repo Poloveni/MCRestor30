@@ -369,8 +369,6 @@
             justify-content: center;
             text-align: center;
             overflow: hidden;
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
         }
 
         .hero-bg {
@@ -389,9 +387,6 @@
             background: url('img/hero-bg.jpg') center center / cover no-repeat;
             opacity: 0.12;
             animation: heroZoom 20s ease-in-out infinite alternate;
-            will-change: transform;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
         }
 
         .hero-bg::after {
@@ -414,9 +409,6 @@
             background: url('img/hero-bg.jpg') center center / cover no-repeat;
             opacity: 0.15;
             animation: heroZoom 20s ease-in-out infinite alternate;
-            will-change: transform;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
         }
 
         .hero-overlay {
@@ -1694,35 +1686,50 @@
             }
         }
 
-        /* Désactivation des animations lourdes sur mobile pour éviter le scintillement */
+        /* ===== MOBILE : suppression de toutes les animations lourdes ===== */
         @media (max-width: 768px) {
-            /* Fond hero figé */
+
+            /* 1. Fond hero : aucune animation, juste un fond statique légèrement zoomé */
             .hero-bg::before,
             .hero-bg-image {
-                animation: none;
-                transform: scale(1.05);
+                animation: none !important;
+                transform: none !important;
+                will-change: auto !important;
             }
 
-            /* Suppression de l'animation shimmer sur le titre (principale cause du scintillement) */
+            /* 2. Titre hero : shimmer désactivé, dégradé statique */
             .hero-title .accent {
-                animation: none;
-                background-position: 0 center;
+                animation: none !important;
+                background: var(--gradient-accent) !important;
+                background-size: auto !important;
+                -webkit-background-clip: text !important;
+                background-clip: text !important;
+                -webkit-text-fill-color: transparent !important;
             }
 
-            /* Suppression de l'effet blur de la navbar (cause de flashs noirs sur iOS Safari) */
+            /* 3. Navbar : pas de backdrop-filter (cause de flashs noirs sur iOS Safari) */
             .navbar {
-                backdrop-filter: none;
-                -webkit-backdrop-filter: none;
-                background: rgba(10, 10, 10, 0.97);
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: rgba(10, 10, 10, 0.97) !important;
             }
 
-            /* Simplification des animations de badge et scroll */
+            /* 4. Badge et scroll : animations simplifiées, sans boucle infinie */
             .hero-badge {
-                animation: fadeInDown 1s ease 0.2s both;
+                animation: fadeInDown 0.6s ease both !important;
             }
 
             .hero-scroll {
-                animation: fadeInUp 1s ease 1s both;
+                animation: none !important;
+            }
+
+            /* 5. Tous les éléments hero : pas de fade-in différé qui crée des frames vides */
+            .hero-title,
+            .hero-subtitle,
+            .hero-cta-group {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
             }
         }
     </style>
@@ -2086,17 +2093,19 @@
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // ===== Particles =====
+        // ===== Particles (desktop uniquement) =====
         const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 30; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 8 + 's';
-            particle.style.animationDuration = (6 + Math.random() * 6) + 's';
-            particle.style.width = (1 + Math.random() * 3) + 'px';
-            particle.style.height = particle.style.width;
-            particlesContainer.appendChild(particle);
+        if (window.innerWidth > 768) {
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (6 + Math.random() * 6) + 's';
+                particle.style.width = (1 + Math.random() * 3) + 'px';
+                particle.style.height = particle.style.width;
+                particlesContainer.appendChild(particle);
+            }
         }
 
         // ===== Navbar scroll =====
